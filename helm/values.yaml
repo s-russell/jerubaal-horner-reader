@@ -1,0 +1,6 @@
+namespace: horner-reader
+env: dev
+hostname: jerubaal.com
+images:
+  backend: "0x7374657665/horner-reader-api:latest"
+  frontend: "0x7374657665/horner-reader-web:latest"

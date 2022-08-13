@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: horner-reader-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: horner-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: horner-reader
+  template:
+    metadata:
+      labels:
+        app: horner-reader
+    spec:
+      containers:
+      - name: horner-reader
+        image: {{ .Values.images.backend }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: horner-reader-web
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: horner-reader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: horner-reader
+  template:
+    metadata:
+      labels:
+        app: horner-reader
+    spec:
+      containers:
+        - name: horner-reader
+          image: {{ .Values.images.frontend }}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+
